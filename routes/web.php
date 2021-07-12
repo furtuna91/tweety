@@ -15,6 +15,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+// Route::post('/tweets', 'TweetController@store');
+Route::resource('tweets', 'TweetController');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
