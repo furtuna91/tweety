@@ -11,6 +11,9 @@
 |
 */
 
+// QUERY TEST
+// DB::listen(function ($query) {var_dump($query->sql, $query->bindings);});
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -18,5 +21,6 @@ Route::get('/', function () {
 Route::middleware('auth')->group(function () {
     Route::resource('tweets', 'TweetController');
 });
+Route::resource('profiles', 'ProfilesController');
 
 Auth::routes();
