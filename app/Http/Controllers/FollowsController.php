@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 
-class ProfilesController extends Controller
+class FollowsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -33,9 +33,11 @@ class ProfilesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(User $profile)
     {
         //
+        auth()->user()->toggleFollow($profile);
+        return back();
     }
 
     /**
@@ -44,10 +46,9 @@ class ProfilesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(User $profile)
+    public function show($id)
     {
         //
-        return view('profiles.show', compact('profile'));;
     }
 
     /**
@@ -82,12 +83,5 @@ class ProfilesController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-
-    public function follow(User $profile)
-    {
-        //
-        return view('profiles.show', compact('profile'));;
     }
 }

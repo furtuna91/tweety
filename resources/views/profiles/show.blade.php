@@ -1,6 +1,6 @@
-@extends('layouts.app')
+{{-- @extends('layouts.app') --}}
 
-@section('content')
+@component('components.app')
     <header class="mb-6 relative">
         <img src="https://placeimg.com/1024/300/any" class="" alt="{{ $profile->name }}">
 
@@ -12,9 +12,11 @@
             <h2 class="font-bold text-2xl mb-0">{{ $profile->name }}</h2>
             <p>Joined {{ $profile->created_at->diffForHumans() }}</p>
         </div>
-        <div>
+        <div class="flex justify-between items-center">
             <a href="" class="rounded-full border border-gray-400 shadow py-2 px-4 text-xs">Edit profile</a>
-            <a href="" class="bg-blue-500 rounded-full shadow py-2 px-4 text-white text-xs">Follow me</a>
+            @component('components.follow-button', ['profile' => $profile])
+
+            @endcomponent
         </div>
     </div>
 
@@ -25,4 +27,4 @@
     {{-- @include('timeline') --}}
     @includeIf('timeline', ['tweets' => $profile->tweets])
 
-@endsection
+@endcomponent
